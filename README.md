@@ -1,5 +1,8 @@
 # Mateusz Kuczyński
-
+Symlinks: 
+$ ln -s -f ../../hooks/pre-commit .git/hooks/pre-commit
+$ ln -s -f ../../hooks/prepare-commit-msg .git/hooks/prepare-commit-msg
+$ ln -s -f ../../hooks/commit-msg .git/hooks/commit-msg
 
 
 ## Getting started

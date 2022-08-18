@@ -1,0 +1,14 @@
+#!/c/Program Files/Python310/python
+import re
+import sys
+msg = sys.argv[1]
+pattern = '(build|chore|ci|docs|feat|fix|perf|refactor|revert|style|test)'
+
+
+with open(msg,'r') as f:
+    content = f.read()
+    if re.search(pattern, content):
+        print("Properly commited changes.")
+    else:
+        print("Wrong commit topic, check commit begining: build|chore|ci|docs|feat|fix|perf|refactor|revert|style|test ")
+        sys.exit(1)

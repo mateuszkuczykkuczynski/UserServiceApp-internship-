@@ -1,0 +1,10 @@
+#!/c/Program Files/Python310/python
+import time
+
+
+print("[INFO]")
+print("U will be thrown to a commitinng window in a moment.")
+print("Begin commit message with one of the following topics:")
+
+
+print("build|chore|ci|docs|feat|fix|perf|refactor|revert|style|test")
