@@ -1,5 +1,4 @@
-#!/c/Program Files/Python310/python
-import time
+#!/usr/bin/python
 
 
 print("[INFO]")

@@ -1,4 +1,4 @@
-#!/c/Program Files/Python310/python
+#!/usr/bin/python
 import re
 import sys
 import subprocess
@@ -16,7 +16,7 @@ name = str(output.strip())
 print(type(name))
 branch_name = name.split("'")[1]
 if re.search(pattern, branch_name):
-    print("Valid branch name.")
+    print("Branch name is okay.")
 else:
     print("Wrong branch_name, Try convention:major|feature|bugfix|hotfix ")
     sys.exit(1)
