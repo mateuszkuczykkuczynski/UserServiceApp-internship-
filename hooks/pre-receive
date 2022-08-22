@@ -1,0 +1,34 @@
+#!/usr/bin/python
+import re
+import sys
+import subprocess
+
+msg = sys.argv[1]
+branch_pattern = '(major|feature|bugfix|hotfix)/*'
+commit_pattern = '^(build|chore|ci|docs|feat|fix|perf|refactor|revert|style|test){1}(\(([\w\-.]+)\))?(!)?: ([\w ])+([\s\S]*)'
+
+def check_branch_pattern():
+	bashCommand = "git rev-parse --abbrev-ref HEAD"
+	process = subprocess.Popen(bashCommand.split(), stdout=subprocess.PIPE)
+	output, error = process.communicate()
+
+	name = str(output.strip())
+	branch_name = name.split("'")[1]
+	if re.search(branch_pattern, branch_name):
+    		print("Branch name is valid.")
+	else:
+    		print("Wrong branch name, Try by this convention:major|feature|bugfix|hotfix ")
+		sys.exit(1)
+
+def check_commit_pattern():
+	with open (msg, 'r') as f: 
+		content = f.read()
+		if re.search(commit_pattern, content):
+			print("Changes commited properly")
+		else:
+			print("Bad commit name, check your commit with begining: build|chore|ci|docs|feat|fix|perf|refactor|revert|style|test ")
+			sys.exit(1)
+
+if __name__ == "__main__":
+	check_branch_pattern()
+	check_commit_pattern()
