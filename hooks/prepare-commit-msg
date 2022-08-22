@@ -1,9 +1,6 @@
 #!/usr/bin/python
 
-
 print("[INFO]")
-print("U will be thrown to a commitinng window in a moment.")
-print("Begin commit message with one of the following topics:")
-
-
+print("U will be thrown to a commitinng window in a while.")
+print("Begin your commit message with one of the following topics:")
 print("build|chore|ci|docs|feat|fix|perf|refactor|revert|style|test")
