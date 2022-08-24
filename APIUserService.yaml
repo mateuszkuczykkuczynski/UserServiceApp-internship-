@@ -1,0 +1,233 @@
+openapi: 3.0.3
+info:
+  title: Simple API for User Service
+  description: 
+    Simple API that will allow user to create a new account, get information about his account, update details connected with his account and also users will be able to delete their account. Admin of the service will have ability to search and filter users accounts (by user id, email or nickname).
+  version: 1.0.0
+  contact:
+    email: mateusz.kuczynski@capgemini.com
+    name: Mateusz
+servers:
+  - url: https://virtserver.swaggerhub.com/MATEUSZKUCZYNSKI/Task2/1.0.0
+paths:
+  /v1/users:
+    post:
+      tags:
+        - user
+      summary: Creates a new user account
+      description: Add a new user account to the service.
+      operationId: addUser
+      requestBody:
+        description: Create a new user account in service. 
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/user'
+      responses:
+        '200':
+          description: Account created successfully. 
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/userID'
+        '400':
+          description: Provided invalid data.
+        '500':
+          description: Internal server error.
+        '503':
+          description: Unavailable service.
+  /v1/users/{id}:
+    get:
+      tags:
+        - user
+      summary: Let user get his account informations.
+      description: Allow user to get his account informations by providing user ID.
+      operationId: GetUserInfo
+      parameters:
+        - name: id
+          in: path
+          description: User ID to get account informations.
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: User informations retrieve successfully. 
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/userID'
+        '400':
+          description: Invalid ID provided.
+        '404':
+          description: User not found.
+        '405':
+          description: Validation exception.
+        '500':
+          description: Internal server error.
+        '503':
+          description: Unavailable service.
+    put:
+      tags:
+        - user
+      summary: Update user account information.
+      description: Let user update his account information by providing user ID.
+      operationId: updateUser
+      parameters: 
+        - name: id
+          in: path
+          description: User ID to change account informations.
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        description: Update user account informations in service.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/user'
+      responses:
+        '200':
+          description: Account information updated successfully. 
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/userID'
+        '400':
+          description: Invalid ID provided.
+        '404':
+          description: User not found.
+        '405':
+          description: Validation exception.
+        '500':
+          description: Internal server error.
+        '503':
+          description: Unavailable service.
+    delete:
+        tags:
+          - user
+        summary: Deleting user account.
+        description: Let logged user delete his account.
+        operationId: deleteUser
+        parameters:
+          - name: id
+            in: path
+            description: User ID to delete user account.
+            required: true
+            schema:
+              type: integer
+        responses:
+          '200':
+            description: User account removed successfully. 
+          '400':
+            description: Invalid ID provided.
+          '404':
+            description: User not found.
+          '405':
+            description: Validation exception.
+          '500':
+            description: Internal server error.
+          '503':
+            description: Unavailable service.
+  /v1/users/searchUsers:
+     get:
+      tags:
+        - user
+      parameters:
+        - name: key
+          in: query
+          description: Ability to select a key which allow to search for multiple users.
+          required: true
+          explode: true
+          schema:
+            type: string
+            enum:
+              - id
+              - email
+              - nickname
+        - name: value
+          in: query
+          description: Array of users with matching values. 
+          required: true
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: User found successfully.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/userID'
+        '400':
+          description: Invalid data provided.
+        '404':
+          description: User not found.
+        '405':
+          description: Validation exception.
+        '500':
+          description: Internal server error.
+        '503':
+          description: Unavailable service.
+          
+components:
+  schemas:
+    user:
+      type: object
+      properties:
+        nickname:
+          type: string
+          example: AlfaMale
+        firstName:
+          type: string
+          example: Johnny
+        lastName:
+          type: string
+          example: Bravo
+        email:
+          type: string
+          example: johnnybravo@email.com
+        country:
+          type: string
+          example: USA
+        gender:
+          type: string
+          example: alfa 
+        dateOfBirth:
+          type: string
+          example: "18/05/1920"
+    userID:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 666666
+        nickname:
+          type: string
+          example: AlfaMale
+        firstName:
+          type: string
+          example: Johnny
+        lastName:
+          type: string
+          example: Bravo
+        email:
+          type: string
+          example: johnnybravo@email.com
+        country:
+          type: string
+          example: USA
+        gender:
+          type: string
+          example: alfa 
+        dateOfBirth:
+          type: string
+          example: "18/05/1920"
+          
+      

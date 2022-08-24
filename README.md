@@ -1,4 +1,4 @@
-# Mateusz Kuczyński
+# Mateusz Kuczyński (task 1)
 Added three local hooks (pre-commit, pre-commit-msg and commit-msg) and one server side hook (pre-reveive hook). 
 Symlinks: 
 $ ln -s -f ../../hooks/pre-commit .git/hooks/pre-commit
@@ -6,7 +6,11 @@ $ ln -s -f ../../hooks/prepare-commit-msg .git/hooks/prepare-commit-msg
 $ ln -s -f ../../hooks/commit-msg .git/hooks/commit-msg
 $ ln -s -f ../../hooks/pre-receive .git/hooks/pre-receive
 
+# Task 2 
+Added a new file (in .yaml format) that contains an API documentations about User Service.
 
+# Task 2.1
+Fixed API documentation according to feedback.
 
 ## Getting started
 
