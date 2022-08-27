@@ -12,6 +12,9 @@ Added a new file (in .yaml format) that contains an API documentations about Use
 # Task 2.1
 Fixed API documentation according to feedback.
 
+# Task 3
+Added User Service application (based on documentation from Swagger) created by using FastApi framework. 
+
 ## Getting started
 
 To make it easy for you to get started with GitLab, here's a list of recommended next steps.
