@@ -1,6 +1,6 @@
 import uvicorn
 from fastapi import FastAPI, Query, status, HTTPException
-from schemas import User, UserWithoutId
+from .schemas import User, UserWithoutId
 
 app = FastAPI()
 
