@@ -1,8 +1,10 @@
 import uvicorn
 from fastapi import FastAPI, Query, status, HTTPException
-from .schemas import User, UserWithoutId
+# from pydantic import BaseModel
+from UserServiceApp.schemas
 
 app = FastAPI()
+
 
 UsersList = {1: {
   "countryCode": "61611",
@@ -116,3 +118,4 @@ async def search_and_filter_users(ids: list[int] = Query(default=None), emails: 
 
 if __name__ == "__main__":
     uvicorn.run("main:app", reload=True)
+

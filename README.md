@@ -20,6 +20,14 @@ Fixed User Service application according to feedback:
 - Changed list to dictionary.
 - Implement (probably) more simply logic for search and filter function (mutual exclusivity).
 
+# Task 4
+Added file that contain tests for User Service Application. Tests achieve 97% of test coverage (based on main app).
+Also main.py file was modified (by adding a random user to dictionary) to have an ability to run tests.
+
+# Task 5 
+Users Service wrapped into virtual environment using Poetry. Added poetry.lock and pyproject.toml files to project.
+To run tests after this (commit) you must run it as module using command "python -m pytest".
+
 ## Getting started
 
 To make it easy for you to get started with GitLab, here's a list of recommended next steps.
