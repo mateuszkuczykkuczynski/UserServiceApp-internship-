@@ -1,7 +1,6 @@
 import uvicorn
 from fastapi import FastAPI, Query, status, HTTPException
-# from pydantic import BaseModel
-from UserServiceApp.schemas
+from schemas.schemas import User, UserWithoutId
 
 app = FastAPI()
 
