@@ -116,3 +116,4 @@ async def search_and_filter_users(ids: list[int] = Query(default=None), emails: 
 
 if __name__ == "__main__":
     uvicorn.run("main:app", reload=True)
+
