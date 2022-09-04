@@ -15,6 +15,11 @@ Fixed API documentation according to feedback.
 # Task 3
 Added User Service application (based on documentation from Swagger) created by using FastApi framework. 
 
+# Task 3.1
+Fixed User Service application according to feedback:
+- Changed list to dictionary.
+- Implement (probably) more simply logic for search and filter function (mutual exclusivity).
+
 ## Getting started
 
 To make it easy for you to get started with GitLab, here's a list of recommended next steps.

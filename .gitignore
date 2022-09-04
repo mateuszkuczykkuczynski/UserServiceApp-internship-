@@ -1,0 +1,14 @@
+# Default ignored files
+/shelf/
+/workspace.xml
+
+# Editors
+.idea/
+
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+
+.coverage
+
+.pytest_cache/
