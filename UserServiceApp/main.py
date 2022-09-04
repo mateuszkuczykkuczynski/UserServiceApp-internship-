@@ -4,9 +4,18 @@ from .schemas import User, UserWithoutId
 
 app = FastAPI()
 
-UsersList = {}
+UsersList = {1: {
+  "countryCode": "61611",
+  "dateOfBirth": "12.07.1998",
+  "firstName": "Mateusz",
+  "lastName": "Kuczynski",
+  "nickname": "Kuczyk",
+  "gender": "male",
+  "email": "mati@gmail.com",
+  "id": 1}
+}
 
-id = 0
+id = 1
 
 responses = {
     400: {"description": "Invalid Parameter Received"},
