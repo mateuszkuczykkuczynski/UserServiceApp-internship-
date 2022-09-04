@@ -1,9 +1,8 @@
 import uvicorn
 from fastapi import FastAPI, Query, status, HTTPException
-from schemas.schemas import User, UserWithoutId
+from .schemas import User, UserWithoutId
 
 app = FastAPI()
-
 
 UsersList = {1: {
   "countryCode": "61611",
