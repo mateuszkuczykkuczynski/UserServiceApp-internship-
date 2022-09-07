@@ -39,6 +39,13 @@ Fixed test file for User Service application according to feedback:
 Users Service wrapped into virtual environment using Poetry. Added poetry.lock and pyproject.toml files to project.
 To run tests after this (commit) you must run it as module using command "python -m pytest".
 
+# Task 6 
+Dockerized Users Service application.
+Added two files: 
+- Dockerfile 
+- docker-compose.yaml
+Docker-compose file contain one service - Users.
+
 ## Getting started
 
 To make it easy for you to get started with GitLab, here's a list of recommended next steps.
