@@ -5,49 +5,52 @@ from UserServiceApp.main import app
 client = TestClient(app)
 
 
-def users_json(user1, user2, user3, user4):
-    if user1:
-        return {
-            "countryCode": "61611",
-            "dateOfBirth": "12.07.1998",
-            "firstName": "Mateusz",
-            "lastName": "Kuczynski",
-            "nickname": "Kuczyk",
-            "gender": "male",
-            "email": "mati@gmail.com",
-            "id": 1}
-    elif user2:
-        return {
-            "countryCode": "41922",
-            "dateOfBirth": "06.06.2000",
-            "firstName": "Matt",
-            "lastName": "Bubel",
-            "nickname": "Booble",
-            "gender": "male",
-            "email": "booble@gmail.com",
-            "id": 2
-        }
-    elif user3:
-        return {
-            "countryCode": "6161161611",
-            "dateOfBirth": "12.07.1998",
-            "firstName": "Mateuszek",
-            "lastName": "Kuczynski",
-            "nickname": "Kuczyk",
-            "gender": "male",
-            "email": "mati@gmail.com",
-            "id": 1}
+def generate_get_response_user():
+    return {
+        "countryCode": "61611",
+        "dateOfBirth": "12.07.1998",
+        "firstName": "Mateusz",
+        "lastName": "Kuczynski",
+        "nickname": "Kuczyk",
+        "gender": "male",
+        "email": "mati@gmail.com",
+        "id": 1}
 
-    elif user4:
-        return [{
-            "countryCode": "6161161611",
-            "dateOfBirth": "12.07.1998",
-            "firstName": "Mateuszek",
-            "lastName": "Kuczynski",
-            "nickname": "Kuczyk",
-            "gender": "male",
-            "email": "mati@gmail.com",
-            "id": 1}]
+
+def generate_post_response_user():
+    return {
+        "countryCode": "41922",
+        "dateOfBirth": "06.06.2000",
+        "firstName": "Matt",
+        "lastName": "Bubel",
+        "nickname": "Booble",
+        "gender": "male",
+        "email": "booble@gmail.com",
+        "id": 2}
+
+
+def generate_put_response_user():
+    return {
+        "countryCode": "6161161611",
+        "dateOfBirth": "12.07.1998",
+        "firstName": "Mateuszek",
+        "lastName": "Kuczynski",
+        "nickname": "Kuczyk",
+        "gender": "male",
+        "email": "mati@gmail.com",
+        "id": 1}
+
+
+def generate_get_response_users_list():
+    return [{
+        "countryCode": "6161161611",
+        "dateOfBirth": "12.07.1998",
+        "firstName": "Mateuszek",
+        "lastName": "Kuczynski",
+        "nickname": "Kuczyk",
+        "gender": "male",
+        "email": "mati@gmail.com",
+        "id": 1}]
 
 
 def user_not_found():
@@ -75,7 +78,7 @@ def test_add_a_new_user():
                            },
                            )
     assert response.status_code == 200
-    assert response.json() == users_json(False, True, False, False)
+    assert response.json() == generate_post_response_user()
 
 
 def test_add_a_new_user_invalid_method():
@@ -87,7 +90,7 @@ def test_add_a_new_user_invalid_method():
 def test_get_user_info():
     response = client.get("/v1/users/1")
     assert response.status_code == 200
-    assert response.json() == users_json(True, False, False, False)
+    assert response.json() == generate_get_response_user()
 
 
 def test_get_user_info_invalid_id():
@@ -115,7 +118,7 @@ def test_update_user_info():
                           },
                           )
     assert response.status_code == 200
-    assert response.json() == users_json(False, False, True, False)
+    assert response.json() == generate_put_response_user()
 
 
 def test_update_user_info_invalid_id():
@@ -145,10 +148,10 @@ def test_delete_user_invalid_id():
 
 
 @pytest.mark.parametrize("test_input,expected,status_code",
-                         [('/v1/users', users_json(False, False, False, True), 200),
-                          ('v1/users?ids=1', users_json(False, False, False, True), 200),
-                          ('v1/users?emails=mati%40gmail.com', users_json(False, False, False, True), 200),
-                          ('v1/users?nicknames=Kuczyk', users_json(False, False, False, True), 200),
+                         [('/v1/users', generate_get_response_users_list(), 200),
+                          ('v1/users?ids=1', generate_get_response_users_list(), 200),
+                          ('v1/users?emails=mati%40gmail.com', generate_get_response_users_list(), 200),
+                          ('v1/users?nicknames=Kuczyk', generate_get_response_users_list(), 200),
                           ('v1/users?ids=12345', user_not_found(), 404),
                           ('v1/users?emails=matikuku%40gmail.com', user_not_found(), 404),
                           ('v1/users?nicknames=Kuczykowek', user_not_found(), 404),

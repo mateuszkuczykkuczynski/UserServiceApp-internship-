@@ -1,21 +1,20 @@
 import uvicorn
 from fastapi import FastAPI, Query, status, HTTPException
-from .schemas import User, UserWithoutId
+from schemas.schemas import User, UserWithoutId
 
 app = FastAPI()
 
 UsersList = {1: {
-  "countryCode": "61611",
-  "dateOfBirth": "12.07.1998",
-  "firstName": "Mateusz",
-  "lastName": "Kuczynski",
-  "nickname": "Kuczyk",
-  "gender": "male",
-  "email": "mati@gmail.com",
-  "id": 1}
+    "countryCode": "61611",
+    "dateOfBirth": "12.07.1998",
+    "firstName": "Mateusz",
+    "lastName": "Kuczynski",
+    "nickname": "Kuczyk",
+    "gender": "male",
+    "email": "mati@gmail.com",
+    "id": 1}
 }
 
-id = 1
 
 responses = {
     400: {"description": "Invalid Parameter Received"},
@@ -26,15 +25,24 @@ responses = {
 }
 
 
+def generate_user_id():
+    id = 2
+    while True:
+        yield id
+        id += 1
+
+
+new_id = iter(generate_user_id())
+
+
 @app.post("/v1/users", responses=responses, response_model=User, status_code=status.HTTP_200_OK)
 async def add_a_new_user(user: UserWithoutId) -> User:
-    global id
 
     for value in user.dict():
         if not isinstance(user.dict()[value], str):
             raise HTTPException(status_code=400,
                                 detail="Invalid Parameter Received")
-    id += 1
+    id = next(new_id)
     new_user = User(countryCode=user.countryCode, dateOfBirth=user.dateOfBirth,
                     firstName=user.firstName, lastName=user.lastName, nickname=user.nickname,
                     gender=user.gender, email=user.email, id=id
@@ -55,13 +63,13 @@ async def get_user_info(id: int) -> User:
 @app.put("/v1/users/{id}", response_model=User, responses=responses, status_code=status.HTTP_200_OK)
 async def update_user_info(id: int, updated_user_data: UserWithoutId) -> User:
     if id in UsersList.keys():
-        UsersList[id]['firstName'] = updated_user_data.firstName
-        UsersList[id]['lastName'] = updated_user_data.lastName
-        UsersList[id]['gender'] = updated_user_data.gender
-        UsersList[id]['countryCode'] = updated_user_data.countryCode
-        UsersList[id]['email'] = updated_user_data.email
-        UsersList[id]['nickname'] = updated_user_data.nickname
-        UsersList[id]['dateOfBirth'] = updated_user_data.dateOfBirth
+        UsersList[id].update({'firstName': updated_user_data.firstName})
+        UsersList[id].update({'lastName': updated_user_data.lastName})
+        UsersList[id].update({'gender': updated_user_data.gender})
+        UsersList[id].update({'countryCode': updated_user_data.countryCode})
+        UsersList[id].update({'email': updated_user_data.email})
+        UsersList[id].update({'nickname': updated_user_data.nickname})
+        UsersList[id].update({'dateOfBirth': updated_user_data.dateOfBirth})
         return UsersList.get(id)
     elif id not in UsersList.keys():
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
@@ -114,6 +122,6 @@ async def search_and_filter_users(ids: list[int] = Query(default=None), emails: 
                             detail="Request cannot be processed because parameters are mutually exclusive.")
     return admin_searches_list
 
+
 if __name__ == "__main__":
     uvicorn.run("main:app", reload=True)
-

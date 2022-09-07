@@ -20,9 +20,20 @@ Fixed User Service application according to feedback:
 - Changed list to dictionary.
 - Implement (probably) more simply logic for search and filter function (mutual exclusivity).
 
+# Task 3.2
+Another fixes for User Service application: 
+- Global "id" variable changed with yield generator for creating new ids for users.
+- Dictionary that contains users is now updated with dict.update(). (PUT method)  
+- Relative imports have been replaced 
+
 # Task 4
 Added file that contain tests for User Service Application. Tests achieve 97% of test coverage (based on main app).
-Also main.py file was modified (by adding a random user to dictionary) to have an ability to run tests.
+Also, main.py file was modified (by adding a random user to dictionary) to have an ability to run tests.
+
+# Task 4.1
+Fixed test file for User Service application according to feedback:
+- Some function names has been changed. 
+- Implement more simply logic for functions that return response (json responses).  
 
 # Task 5 
 Users Service wrapped into virtual environment using Poetry. Added poetry.lock and pyproject.toml files to project.
