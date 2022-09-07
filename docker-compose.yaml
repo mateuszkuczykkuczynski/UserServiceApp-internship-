@@ -1,0 +1,9 @@
+version: "3"
+
+services:
+  Users:
+    container_name: user_service_ctr
+    image: user_service_app
+    build: .
+    ports:
+      - "8000:80"
