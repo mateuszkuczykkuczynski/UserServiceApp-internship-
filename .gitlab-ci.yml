@@ -1,0 +1,12 @@
+image: python:latest
+
+stages:
+  - test
+
+unit-test:
+  stage: test
+  script:
+    - pip install poetry
+    - poetry install
+    - cd UserServiceApp/
+    - poetry run python -m pytest
