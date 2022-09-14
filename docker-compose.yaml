@@ -5,5 +5,27 @@ services:
     container_name: user_service_ctr
     image: user_service_app
     build: .
+    command:
+      bash -c 'while !</dev/tcp/db/5432; do sleep 1; done; uvicorn main:app --reload --host 0.0.0.0 --port 80'
     ports:
       - "8000:80"
+    depends_on:
+      - db
+    networks:
+      - api_network
+  db:
+    container_name: postgresql_db
+    image: postgres
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=user_db
+    networks:
+      - api_network
+
+networks:
+  api_network:
+
