@@ -1,8 +1,21 @@
 import uvicorn
 from fastapi import FastAPI, Query, status, HTTPException
 from schemas.schemas import User, UserWithoutId
+from database import db
+
 
 app = FastAPI()
+
+
+@app.on_event("startup")
+async def startup():
+    await db.connect()
+
+
+@app.on_event("shutdown")
+async def shutdown():
+    await db.disconnect()
+
 
 UsersList = {1: {
     "countryCode": "61611",
