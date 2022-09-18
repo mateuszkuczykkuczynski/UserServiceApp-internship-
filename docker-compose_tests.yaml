@@ -1,0 +1,31 @@
+version: "3"
+
+services:
+  tests:
+    container_name: user_service_tests_ctr
+    image: user_service_tests
+    build:
+      context: .
+      dockerfile: Dockerfile_tests
+    ports:
+      - "8008:80"
+    depends_on:
+      - db
+    networks:
+      - api_network
+  db:
+    container_name: postgresql_db
+    image: postgres
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=user_db
+    networks:
+      - api_network
+
+networks:
+  api_network:
+
