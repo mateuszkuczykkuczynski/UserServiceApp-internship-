@@ -11,5 +11,5 @@ docker-test:
   script:
       - apk add --no-cache docker-compose
       - docker-compose -f docker-compose_tests.yaml up
-      - time sleep 5
+      - time sleep 1
       - docker-compose -f docker-compose_tests.yaml exec tests python -m pytest
