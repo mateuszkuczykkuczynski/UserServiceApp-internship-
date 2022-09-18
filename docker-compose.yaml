@@ -17,7 +17,7 @@ services:
     container_name: user_service_tests_ctr
     image: user_service_tests
     build:
-      dockerfile: Dockerfile_tests
+      dockerfile: UserServiceApp/tests/Dockerfile_tests
     command:
       bash -c 'while !</dev/tcp/db/5432; do sleep 1; done; python -m pytest'
     ports:
