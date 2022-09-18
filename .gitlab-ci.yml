@@ -1,4 +1,4 @@
-image: docker/compose:latest
+image: docker
 
 services:
   - docker:dind
@@ -9,5 +9,7 @@ stages:
 docker-test:
   stage: build
   script:
-    - docker-compose build
-    - docker-compose up
+      - apk add --no-cache docker-compose
+      - docker-compose -f docker-compose_tests up
+      - time sleep 5
+      - docker-compose -f docker-compose_tests exec tests python -m pytest
