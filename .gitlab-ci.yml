@@ -1,10 +1,10 @@
-image: docker
+image: docker/compose:latest
 
 stages:
   - build
 
-unit-test:
+docker-test:
   stage: build
   script:
-    - docker compose build
-    - docker compose up
+    - docker-compose build
+    - docker-compose up
