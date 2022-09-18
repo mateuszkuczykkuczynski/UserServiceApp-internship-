@@ -9,4 +9,4 @@ COPY /UserServiceApp /UserServiceApp
 
 RUN poetry config virtualenvs.create false && poetry install
 
-CMD ["python", "-m", "pytest"]
+#CMD ["python", "-m", "pytest"]

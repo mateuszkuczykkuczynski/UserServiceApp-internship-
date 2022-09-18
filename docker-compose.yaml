@@ -13,6 +13,19 @@ services:
       - db
     networks:
       - api_network
+  tests:
+    container_name: user_service_tests_ctr
+    image: user_service_tests
+    build:
+      dockerfile: Dockerfile_tests
+    command:
+      bash -c 'while !</dev/tcp/db/5432; do sleep 1; done; python -m pytest'
+    ports:
+      - "8008:80"
+    depends_on:
+      - db
+    networks:
+      - api_network
   db:
     container_name: postgresql_db
     image: postgres
