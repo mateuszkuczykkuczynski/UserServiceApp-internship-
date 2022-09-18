@@ -7,7 +7,7 @@ from UserServiceApp.main import app
 
 POSTGRES_USER = "postgres"
 POSTGRES_PASSWORD = "password"
-POSTGRES_HOST = "host.docker.internal"
+POSTGRES_HOST = "db"
 POSTGRES_PORT = 5432
 POSTGRES_DB_NAME = "user_db"
 
