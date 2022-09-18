@@ -1,12 +1,10 @@
-image: python:latest
+image: docker
 
 stages:
-  - test
+  - build
 
 unit-test:
-  stage: test
+  stage: build
   script:
-    - pip install poetry
-    - poetry install
-    - cd UserServiceApp/
-    - poetry run python -m pytest
+    - docker compose build
+    - docker compose up
