@@ -10,4 +10,4 @@ docker-test:
   stage: build
   script:
     - docker-compose build
-    - docker-compose up    
+    - docker-compose up
