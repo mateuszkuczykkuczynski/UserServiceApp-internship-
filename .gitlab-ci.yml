@@ -1,12 +1,13 @@
-image: python:latest
+image: docker:latest
+
+services:
+  - docker:dind
 
 stages:
   - test
 
-unit-test:
+docker-test:
   stage: test
   script:
-    - pip install poetry
-    - poetry install
-    - cd UserServiceApp/
-    - poetry run python -m pytest
+      - apk add --no-cache docker-compose
+      - docker-compose up --exit-code-from tests
