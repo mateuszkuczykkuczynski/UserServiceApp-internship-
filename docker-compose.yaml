@@ -26,6 +26,15 @@ services:
     ports:
       - "8008:80"
     depends_on:
+      - Users
+    networks:
+      - api_network
+  redis:
+    container_name: redis_ctr
+    image: redis
+    ports:
+      - "6379:6379"
+    depends_on:
       - db
     networks:
       - api_network
