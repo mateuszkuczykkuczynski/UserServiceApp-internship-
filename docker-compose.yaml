@@ -26,7 +26,7 @@ services:
     ports:
       - "8008:80"
     depends_on:
-      - Users
+      - db
     networks:
       - api_network
   redis:
