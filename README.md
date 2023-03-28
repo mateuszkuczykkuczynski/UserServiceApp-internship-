@@ -1,5 +1,5 @@
 Welcome to readme.md of my final internship project in Capgemini Engineering. 
-I have develop a API app in FastAPI with all super cool features mentioned below --->
+I have develop a API app in FastAPI with all super cool features (part of them is described below and more details about app and it funcionality will be added pretty soon!
 
 # Task 1
 Added three local hooks (pre-commit, pre-commit-msg and commit-msg) and one server side hook (pre-reveive hook). 
@@ -43,3 +43,4 @@ Added two files:
 - Dockerfile 
 - docker-compose.yaml
 Docker-compose file contain one service - Users.
+ 
